@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-app
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rag-app
+  template:
+    metadata:
+      labels:
+        app: rag-app
+    spec:
+      serviceAccountName: gke-ksa   # ← Workload Identity SA
+      containers:
+        - name: app
+          image: us-central1-docker.pkg.dev/game-d8160/gcs-logger-repo/gcs-logger:latest
+          env:
+            - name: BUCKET_NAME
+              value: "game-d8160-rag-logs-asia"
+            - name: GCP_PROJECT
+              value: "game-d8160"
+            - name: REGION
+              value: "asia-south1"
+            - name: CORPUS_NAME
+              value: "projects/game-d8160/locations/asia-south1/ragCorpora/5764607523034234880"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
