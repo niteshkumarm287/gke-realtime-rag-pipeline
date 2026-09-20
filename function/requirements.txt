@@ -1,2 +1,2 @@
 functions-framework==3.*
-google-cloud-aiplatform[rag]>=1.38.0
+google-cloud-aiplatform[rag]>=2.1.3
