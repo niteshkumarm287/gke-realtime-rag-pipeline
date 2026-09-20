@@ -83,3 +83,7 @@ The pipeline consists of the following components:
 
 3.  **Check the RAG corpus:**
     *   The new log message should be indexed and available for retrieval in your Vertex AI RAG corpus.
+
+## Development and review
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for local checks, configuration handling, and the review workflow.
